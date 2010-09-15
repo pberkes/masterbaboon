@@ -149,7 +149,6 @@ def onegame():
                 cards = numpy.concatenate((cards, deck[:, pos:pos + nadd]), axis=1)
                 pos += nadd
         else:
-            #print 'no sets found', pos
             if pos >= deck.shape[1]:
                 break # game is over
             # add additional cards
