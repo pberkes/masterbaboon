@@ -16,7 +16,7 @@ def random_deck():
     # shuffle
     return cards[:, numpy.random.permutation(n)]
 
-def random_cards():
+def random_cards(ncards=ncards):
     return random_deck()[:, :ncards]
 
 # solution checker
