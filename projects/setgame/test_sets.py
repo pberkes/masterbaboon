@@ -1,5 +1,6 @@
 import unittest
 import numpy
+import itertools
 import sets_solver
 
 class TestSets(unittest.TestCase):
@@ -28,6 +29,31 @@ class TestSets(unittest.TestCase):
                 s = list(s)
                 s.sort()
                 self.assertTrue(tuple(s) in sets)
+
+    def test_one_game(self):
+        all_cards = set()
+        old_nsets = -1
+        game = sets_solver.one_game()
+        for cards in game:
+            ncards = cards.shape[1]
+
+            assert ncards % 3 == 0
+            
+            if ncards < 12:
+                # this is only possible at the end of the deck
+                left = len(list(game))
+                assert left < 3
+                
+            if cards.shape[1] == 15:
+                assert old_nsets == 0
+                
+            old_nsets = len(sets_solver.find_sets2(cards))
+            cards_list = [tuple(c) for c in cards.T]
+            all_cards = all_cards.union(set(cards_list))
+            
+        # all cards must have been played
+        cards = [card for card in itertools.product(range(3), repeat=4)]
+        assert all_cards == set(cards)
 
 if __name__=='__main__':
     unittest.main()
