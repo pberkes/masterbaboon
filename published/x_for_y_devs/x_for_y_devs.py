@@ -39,8 +39,8 @@ def google_search(query):
     return n
 
 
-languages = ['BASIC', 'C++', 'C#', 'Cobol', 'Java', 'Javascript', 'LISP',
-             'Python', 'Perl', 'Ruby']
+languages = ['BASIC', 'C++', 'C#', 'Cobol', 'Fortran', 'Java', 'Javascript',
+             'LISP', 'Python', 'Perl', 'Ruby']
 sentences = [
     '"{} for {} developers"',
     '"{} for {} programmers"'
@@ -69,6 +69,6 @@ print title
 for l1 in languages:
     line = l1.rjust(NCHARS)
     for l2 in languages:
-        n = results[l1, l2] / (results[l1, l1] + 1.0)
-        line = line + str(int(n+0.5)).rjust(NCHARS)
+        n = results[l1, l2]
+        line = line + str(n).rjust(NCHARS)
     print line
